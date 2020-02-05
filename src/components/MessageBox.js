@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ListMessages from './ListMessages'
+import AddMessage from './AddMessage'
 
 class MessageBox extends Component {
   render(){
@@ -12,7 +13,7 @@ class MessageBox extends Component {
                 <h2>My Message Board</h2>                  
               </div>
               <div className="card-body">
-
+                <AddMessage />  
               </div>
               <div className="card-footer">
                 <ListMessages />
