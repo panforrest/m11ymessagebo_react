@@ -1,0 +1,5 @@
+export default {
+
+	MESSAGES_RECEIVED: 'MESSAGES_RECEIVED'
+	 
+}

@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { APIManager } from '../utils'
+import actions from '../redux/actions'
+import { connect } from 'react-redux'
 
 class ListMessages extends Component {
   constructor(props){
@@ -19,9 +21,10 @@ class ListMessages extends Component {
 
   	  console.log('componentDidMount: '+JSON.stringify(response))
   	  var results = response.results
-  	  this.setState({
-  	  	messages: results
-  	  })
+  	  // this.setState({
+  	  // 	messages: results
+  	  // })
+      this.props.messagesReceived(results)
   	})
   }
 
@@ -29,7 +32,7 @@ class ListMessages extends Component {
   	return(
       <ul className="group-list">
         {
-          this.state.messages.map((message, index) => {
+          this.props.messages.map((message, index) => {
           	return (
               <li key={index} className="group-list-item">
                 {message.user}: {message.messageBody}
@@ -44,4 +47,16 @@ class ListMessages extends Component {
   }
 }
 
-export default ListMessages
+const stateToProps = (state) => {
+  return {
+    messages: state.message.list
+  }
+}
+
+const dispatchToProps = (dispatch) => {
+  return {
+    messagesReceived: (messages) => dispatch(actions.messagesReceived(messages))
+  }
+}
+
+export default connect(stateToProps, dispatchToProps)(ListMessages)
