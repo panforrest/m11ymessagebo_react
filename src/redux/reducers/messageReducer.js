@@ -12,6 +12,13 @@ export default (state=initialState, action) => {
   	  updated['list']=action.messages
   	  return updated
 
+    case constants.MESSAGE_CREATED:
+      console.log('MESSAGE_CREATED: '+JSON.stringify(action.message))
+      let updatedList = Object.assign([], updated.list)
+      updatedList.push(action.message)
+      updated['list'] = updatedList
+      return updated
+
     default:
       return state
   }

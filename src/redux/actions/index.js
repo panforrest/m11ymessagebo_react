@@ -7,5 +7,12 @@ export default {
   	  type: constants.MESSAGES_RECEIVED,
   	  messages: messages
   	}
+  },
+
+  messageCreated: (message) => {
+  	return {
+  	  type: constants.MESSAGE_CREATED,
+  	  message: message
+  	}
   }
 }
