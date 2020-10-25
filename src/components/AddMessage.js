@@ -27,17 +27,19 @@ class AddMessage extends Component {
 
   handleSubmit(event){
     event.preventDefault()
-    APIManager.post('https://mymessagebo-backend.herokuapp.com/api/message', this.state, (err, response) => {
-      if (err) {
-      	var msg = err.message || err
-      	alert(msg)
-      	return
-      }
+    if (this.state.user && this.state.messageBody) {
+      APIManager.post('https://mymessagebo-backend.herokuapp.com/api/message', this.state, (err, response) => {
+        if (err) {
+          var msg = err.message || err
+          alert(msg)
+          return
+        }
 
-      console.log(JSON.stringify(response))
-      var result = response.result
-      this.props.messageCreated(result)
-    })
+        console.log(JSON.stringify(response))
+        var result = response.result
+        this.props.messageCreated(result)
+      })
+    }
   }
 
   render(){
